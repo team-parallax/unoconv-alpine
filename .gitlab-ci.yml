@@ -1,0 +1,22 @@
+services:
+  - docker:dind
+
+image: docker:latest
+
+variables:
+  IMAGE: ${IMAGE_BASE_NAME}:${CI_COMMIT_TAG}
+  DOCKER_USER: ${DOCKER_USER}
+  DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+ 
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+      - docker login -u ${DOCKER_USER} --password ${DOCKER_PASSWORD}
+      - docker build --cache-from ${IMAGE} -t ${IMAGE} -f ./Dockerfile .
+      - docker push ${IMAGE}
+  only:
+    - master
+    - add-docker-to-ci
