@@ -2,7 +2,7 @@ image: docker:dind
 
 variables:
   IMAGE: ${IMAGE_BASE_NAME}
-  DOCKER_HOST: tcp://localhost:2376
+  DOCKER_HOST: tcp://localhost:2375
   DOCKER_PASSWORD: ${DOCKER_PASSWORD}
   DOCKER_USER: ${DOCKER_USER}
   DOCKER_TLS_CERTDIR: ""
