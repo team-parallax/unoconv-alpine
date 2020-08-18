@@ -1,5 +1,3 @@
-services:
-  - docker:dind
 
 image: docker:latest
 
@@ -19,6 +17,8 @@ check_deps:
     - docker --version
 build:
   stage: build
+  services:
+    - docker:dind
   script:
       - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
       - docker build --cache-from ${IMAGE} -t ${IMAGE} -f ./Dockerfile .
