@@ -7,14 +7,20 @@ variables:
   IMAGE: ${IMAGE_BASE_NAME}:${CI_COMMIT_SHORT_SHA}
   DOCKER_USER: ${DOCKER_USER}
   DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+  REGISTRY: ${REGISTRY}
  
 stages:
+  - prepare
   - build
 
+check_deps:
+  stage: prepare
+  script:
+    - docker --version
 build:
   stage: build
   script:
-      - docker login -u ${DOCKER_USER} --password ${DOCKER_PASSWORD}
+      - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
       - docker build --cache-from ${IMAGE} -t ${IMAGE} -f ./Dockerfile .
       - docker push ${IMAGE}
   only:
