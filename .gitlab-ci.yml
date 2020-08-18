@@ -4,7 +4,7 @@ services:
   - docker:dind
 
 variables:
-  IMAGE: ${IMAGE_BASE_NAME}:${CI_COMMIT_SHORT_SHA}
+  IMAGE: ${IMAGE_BASE_NAME}
   DOCKER_PASSWORD: ${DOCKER_PASSWORD}
   DOCKER_USER: ${DOCKER_USER}
   REGISTRY: ${REGISTRY}
@@ -21,7 +21,7 @@ build:
   stage: build
   script:
       - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
-      - docker build --cache-from ${IMAGE} -t ${IMAGE} -f ./Dockerfile .
+      - docker build -t ${IMAGE}:${CI_COMMIT_SHORT_SHA} -f ./Dockerfile .
       - docker push ${IMAGE}
       - docker logout
   only:
