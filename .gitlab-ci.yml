@@ -16,6 +16,7 @@ check_deps:
   stage: prepare
   script:
     - docker --version
+    - docker info
 build:
   stage: build
   script:
