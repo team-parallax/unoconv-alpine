@@ -21,6 +21,7 @@ check_deps:
 build:
   stage: build
   script:
+      - export DOCKER_HOST=${DOCKER_HOST}
       - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
       - docker build --cache-from ${IMAGE} -t ${IMAGE} -f ./Dockerfile .
       - docker push ${IMAGE}
