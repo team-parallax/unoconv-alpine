@@ -23,4 +23,5 @@ build:
       - docker logout
   only:
     - master
+    - merge_requests
     - tags
