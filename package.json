@@ -1,0 +1,8 @@
+{
+  "name": "unoconv-alpine",
+  "version": "0.9.0",
+  "description": "node:alpine docker image with unoconv installed",
+  "repository": "ssh://git@gitlab.team-parallax.com:10022/teamparallax/gitops/runner-service/unoconv-alpine.git",
+  "author": "Sven Patrick Meier <sven.patrick.meier@team-parallax.com>",
+  "license": "MIT"
+}

@@ -12,20 +12,15 @@ variables:
   REGISTRY: ${REGISTRY}
  
 stages:
-  - prepare
   - build
 
-check_deps:
-  stage: prepare
-  script:
-    - docker --version
-    - docker info
 build:
   stage: build
   script:
       - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
-      - docker build -t ${IMAGE}:${CI_COMMIT_SHORT_SHA} -f ./Dockerfile .
+      - docker build -t ${IMAGE}:${CI_COMMIT_TAG} -f ./Dockerfile .
       - docker push ${IMAGE}
       - docker logout
   only:
     - master
+    - tags
