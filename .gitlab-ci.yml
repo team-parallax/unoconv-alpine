@@ -29,4 +29,3 @@ build:
       - docker logout
   only:
     - master
-    - add-docker-to-ci
