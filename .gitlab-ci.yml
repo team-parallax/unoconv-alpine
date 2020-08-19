@@ -14,19 +14,6 @@ variables:
 stages:
   - build
 
-
-build_master:
-  stage: build
-  script:
-      - echo -n "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USER} --password-stdin ${REGISTRY}
-      - docker build -t ${IMAGE}:${CI_COMMIT_SHORT_SHA} -f ./Dockerfile .
-      - docker push ${IMAGE}
-      - docker logout
-  only:
-    - master
-  except:
-    - tags
-
 build_master_vtagged:
   stage: build
   script:
