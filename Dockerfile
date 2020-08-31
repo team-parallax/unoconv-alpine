@@ -3,6 +3,7 @@ FROM node:12.2.0-alpine
 ENV UNO_URL https://raw.githubusercontent.com/dagwieers/unoconv/master/unoconv
 
 RUN apk --no-cache add python3 \
+            bash \
             curl \
             util-linux \
             libreoffice-common \
