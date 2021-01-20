@@ -23,4 +23,3 @@ build_master_vtagged:
       - docker logout
   only:
     - tags
-    - master
