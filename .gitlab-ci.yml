@@ -1,5 +1,5 @@
 services:
-  - docker:dind
+  - docker:19.03.12-dind
 
 image: docker:latest
 
